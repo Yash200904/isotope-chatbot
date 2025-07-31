@@ -12,8 +12,19 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
 const app = express();
-app.use(cors());
-app.use(express.json());
+
+// Enhanced CORS configuration for mobile compatibility
+app.use(cors({
+  origin: true, // Allow all origins for now
+  credentials: true,
+  methods: ['GET', 'POST', 'OPTIONS'],
+  allowedHeaders: ['Content-Type', 'Authorization', 'Accept', 'Origin', 'X-Requested-With']
+}));
+
+app.use(express.json({ limit: '10mb' }));
+
+// Handle preflight requests
+app.options('*', cors());
 
 // Add request logging
 app.use((req, res, next) => {
@@ -23,6 +34,27 @@ app.use((req, res, next) => {
 
 // Serve static files (HTML, CSS, JS)
 app.use(express.static(__dirname));
+
+// Health check endpoint for debugging
+app.get('/health', (req, res) => {
+  res.json({
+    status: 'OK',
+    timestamp: new Date().toISOString(),
+    server: 'Isotope Chatbot',
+    environment: process.env.NODE_ENV || 'development',
+    hasApiKey: !!AZURE_OPENAI_API_KEY
+  });
+});
+
+// Test endpoint for mobile debugging
+app.get('/test', (req, res) => {
+  res.json({
+    message: 'Server is working!',
+    userAgent: req.headers['user-agent'],
+    origin: req.headers.origin,
+    timestamp: Date.now()
+  });
+});
 
 // Azure OpenAI Configuration
 const AZURE_OPENAI_ENDPOINT = "https://hubsdk1153372211.openai.azure.com/openai/deployments/gpt-4.1/chat/completions?api-version=2024-12-01-preview";
@@ -245,15 +277,18 @@ app.post('/chat', async (req, res) => {
     
   } catch (error) {
     console.error('Error calling Azure OpenAI:', error.message);
+    console.error('Full error details:', error);
     
-    // Fallback response
-    res.json({
+    // Enhanced error response for mobile debugging
+    const errorResponse = {
       choices: [{
         message: {
-          content: "I'm sorry, I'm having trouble connecting to the AI service right now. Please try again in a moment. In the meantime, I can tell you that isotopes are used in healthcare for medical imaging and cancer treatment, in agriculture for food preservation, and in industry for quality control and testing. 🔬"
+          content: `I'm having trouble connecting to the AI service. This might be due to:\n\n• Network connectivity issues\n• Mobile browser compatibility\n• Server configuration\n\nError details: ${error.message}\n\nPlease try:\n1. Refreshing the page\n2. Checking your internet connection\n3. Trying from a different browser\n\nIn the meantime, I can tell you that isotopes are used in healthcare for medical imaging and cancer treatment, in agriculture for food preservation, and in industry for quality control. 🔬`
         }
       }]
-    });
+    };
+    
+    res.status(200).json(errorResponse); // Use 200 status to avoid mobile browser issues
   }
 });
 

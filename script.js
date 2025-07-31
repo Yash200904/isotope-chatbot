@@ -140,18 +140,38 @@ function addMessage(text, sender, customId) {
     chatMessages.scrollTop = chatMessages.scrollHeight;
 }
 
-// Use local Node.js proxy for OpenAI API
+// Use relative URL for deployment compatibility
 async function askBot(message) {
   console.log('askBot called with message:', message);
   try {
-    console.log('Sending request to localhost:3001/chat');
-    const response = await fetch('http://localhost:3001/chat', {
+    // Use relative URL so it works both locally and when deployed
+    const apiUrl = window.location.hostname === 'localhost' ? 
+      'http://localhost:3001/chat' : '/chat';
+    
+    console.log('Sending request to:', apiUrl);
+    
+    const response = await fetch(apiUrl, {
       method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ message })
+      headers: { 
+        'Content-Type': 'application/json',
+        'Accept': 'application/json',
+        'Cache-Control': 'no-cache'
+      },
+      body: JSON.stringify({ 
+        message,
+        timestamp: Date.now() // Help with mobile caching issues
+      }),
+      // Mobile-friendly options
+      credentials: 'same-origin',
+      cache: 'no-cache'
     });
     
     console.log('Response status:', response.status);
+    
+    if (!response.ok) {
+      throw new Error(`Server responded with status: ${response.status}`);
+    }
+    
     const data = await response.json();
     console.log('Response data:', data);
     
@@ -159,10 +179,18 @@ async function askBot(message) {
       return data.choices[0].message.content.trim();
     }
     if (data.error) return 'AI Error: ' + data.error.message;
-    return 'Sorry, I could not generate a response.';
+    return 'Sorry, I could not generate a response. Please try again.';
   } catch (error) {
     console.error('Error in askBot:', error);
-    throw error;
+    
+    // Mobile-friendly error messages
+    if (error.name === 'TypeError' && error.message.includes('Failed to fetch')) {
+      return `**Connection Error** 📱\n\n• Check your internet connection\n• Try switching between WiFi and mobile data\n• Refresh the page and try again\n\nThe chatbot should work on both desktop and mobile devices!`;
+    } else if (error.message.includes('status: 5')) {
+      return `**Server Error** 🔧\n\n• The server is experiencing issues\n• Please try again in a few moments\n• Contact support if the problem persists`;
+    } else {
+      return `**Technical Error** ⚠️\n\n• Error: ${error.message}\n• Please refresh the page\n• Try from a different browser if needed\n\nI'm here to help with isotope questions once we're reconnected! 🔬`;
+    }
   }
 }
 
