@@ -1,0 +1,610 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Agricultural Applications - IsotopeTech</title>
+    <meta name="description" content="Comprehensive guide to isotope applications in agriculture, including nitrogen fixation studies, carbon dynamics research, and soil analysis methods.">
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        .agriculture-hero {
+            background: linear-gradient(135deg, #56ab2f 0%, #a8e6cf 100%);
+            color: white;
+            padding: 120px 0 80px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .agriculture-hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000"><defs><radialGradient id="a" cx="50%" cy="50%"><stop offset="0%" stop-color="%23ffffff" stop-opacity="0.1"/><stop offset="100%" stop-color="%23ffffff" stop-opacity="0"/></radialGradient></defs><circle cx="200" cy="200" r="100" fill="url(%23a)"/><circle cx="800" cy="300" r="150" fill="url(%23a)"/><circle cx="400" cy="700" r="120" fill="url(%23a)"/></svg>') no-repeat center center;
+            background-size: cover;
+        }
+        
+        .agriculture-hero .container {
+            position: relative;
+            z-index: 1;
+        }
+        
+        .agriculture-hero h1 {
+            font-size: 3.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+        }
+        
+        .agriculture-hero p {
+            font-size: 1.25rem;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+        }
+        
+        .home-button {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: rgba(255,255,255,0.2);
+            color: white;
+            padding: 12px 24px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255,255,255,0.3);
+        }
+        
+        .home-button:hover {
+            background: rgba(255,255,255,0.3);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.2);
+        }
+        
+        .agriculture-section {
+            padding: 80px 0;
+        }
+        
+        .agriculture-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+        
+        .medical-production {
+            grid-column: 1 / -1;
+        }
+        
+        @media (min-width: 768px) {
+            .agriculture-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .medical-production {
+                grid-column: span 2;
+            }
+        }
+
+        /* Special styling for agricultural applications section */
+        .agricultural-applications .agriculture-grid {
+            grid-template-columns: repeat(3, 1fr);
+        }
+
+        @media (max-width: 1200px) {
+            .agricultural-applications .agriculture-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .agricultural-applications .agriculture-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* News Card Hover Effects */
+        .news-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+        }
+
+        @media (max-width: 768px) {
+            .recent-news .container > div {
+                grid-template-columns: 1fr !important;
+            }
+        }
+        
+        .agriculture-card {
+            background: white;
+            border-radius: 20px;
+            padding: 2rem;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+            border: 1px solid #f0f0f0;
+        }
+        
+        .agriculture-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 50px rgba(0,0,0,0.15);
+        }
+        
+        .agriculture-card .icon {
+            width: 60px;
+            height: 60px;
+            border-radius: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            color: white;
+            margin-bottom: 1.5rem;
+        }
+        
+        .nitrogen-fixation .icon { background: linear-gradient(45deg, #56ab2f, #a8e6cf); }
+        .carbon-dynamics .icon { background: linear-gradient(45deg, #4ecdc4, #44b7c6); }
+        .soil-analysis .icon { background: linear-gradient(45deg, #45b7d1, #96c93d); }
+        
+        .agriculture-card h3 {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            color: #2c3e50;
+        }
+        
+        .agriculture-card p {
+            color: #666;
+            line-height: 1.6;
+            margin-bottom: 1.5rem;
+        }
+        
+        .agriculture-card ul {
+            list-style: none;
+            padding: 0;
+        }
+        
+        .agriculture-card ul li {
+            padding: 0.5rem 0;
+            color: #555;
+            position: relative;
+            padding-left: 1.5rem;
+        }
+        
+        .agriculture-card ul li::before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: #27ae60;
+            font-weight: bold;
+        }
+        
+        .isotopes-used {
+            background: #f8f9fa;
+            padding: 1rem;
+            border-radius: 10px;
+            margin-top: 1rem;
+        }
+        
+        .isotopes-used h4 {
+            font-size: 0.9rem;
+            font-weight: 600;
+            color: #495057;
+            margin-bottom: 0.5rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        
+        .isotopes-used span {
+            display: inline-block;
+            background: #e9ecef;
+            color: #495057;
+            padding: 0.25rem 0.75rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            margin: 0.25rem 0.25rem 0.25rem 0;
+            font-weight: 500;
+        }
+        
+        .benefits-section {
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            padding: 80px 0;
+        }
+        
+        .benefits-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+        
+        .economic-challenges .agriculture-grid {
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        }
+        
+        .benefit-item {
+            text-align: center;
+            padding: 2rem;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+        }
+        
+        .benefit-item .icon {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            color: #56ab2f;
+        }
+        
+        .benefit-item h4 {
+            font-size: 1.25rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            color: #2c3e50;
+        }
+        
+        .benefit-item p {
+            color: #666;
+            line-height: 1.6;
+        }
+
+        /* Economic Challenges specific styling */
+        .economic-challenges .agriculture-card ul {
+            list-style: none;
+            padding: 0;
+        }
+        
+        .economic-challenges .agriculture-card ul li {
+            padding: 0.5rem 0;
+            color: #555;
+            position: relative;
+            padding-left: 1.5rem;
+        }
+        
+        .economic-challenges .agriculture-card ul li::before {
+            content: '•';
+            position: absolute;
+            left: 0;
+            color: #666;
+            font-weight: bold;
+        }
+
+        .economic-challenges .agriculture-card h4 {
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            color: #2c3e50;
+        }
+        
+        @media (max-width: 768px) {
+            .agriculture-hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            .agriculture-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .benefits-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <i class="fas fa-atom"></i>
+                <span>IsotopeTech</span>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="healthcare.html">Healthcare</a></li>
+                <li><a href="agriculture.html" class="active">Agriculture</a></li>
+                <li><a href="production.html">Production</a></li>
+                <li><a href="art-science.html">Art & Science</a></li>
+            </ul>
+            <div class="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="agriculture-hero">
+        <div class="container">
+            <h1>Agricultural Applications</h1>
+            <p>Discover how isotopes are revolutionizing modern agriculture through precision farming, crop optimization, and environmental research.</p>
+            <a href="index.html" class="home-button">
+                <i class="fas fa-home"></i>
+                Return to Home
+            </a>
+        </div>
+    </section>
+
+    <!-- Key Agricultural Applications Section -->
+    <section class="agriculture-section agricultural-applications">
+        <div class="container">
+            <h2 style="text-align: center; margin-bottom: 1rem; color: #2c3e50;">Key Agricultural Applications</h2>
+            <p style="text-align: center; color: #666; max-width: 800px; margin: 0 auto;">Isotopes play a crucial role in modern agricultural research, providing precise measurements, nutrient tracking, and process optimization that traditional methods cannot achieve.</p>
+            
+            <div class="agriculture-grid">
+                <div class="agriculture-card nitrogen-fixation">
+                    <div class="icon">
+                        <i class="fas fa-seedling"></i>
+                    </div>
+                    <h3>Nitrogen Fixation Studies</h3>
+                    <p>Isotopes enable precise tracking of biological nitrogen fixation in leguminous plants and optimization of fertilizer application for sustainable crop production.</p>
+                    <div class="isotopes-used">
+                        <h4>Common Isotopes:</h4>
+                        <span>Nitrogen-15</span>
+                        <span>Carbon-13</span>
+                        <span>Carbon-14</span>
+                    </div>
+                </div>
+
+                <div class="agriculture-card carbon-dynamics">
+                    <div class="icon">
+                        <i class="fas fa-leaf"></i>
+                    </div>
+                    <h3>Carbon Dynamics Research</h3>
+                    <p>Isotopic tracers help track carbon flow through soil-plant systems, providing insights into ecosystem dynamics and carbon sequestration.</p>
+                    <div class="isotopes-used">
+                        <h4>Common Isotopes:</h4>
+                        <span>Carbon-14</span>
+                        <span>Carbon-13</span>
+                        <span>Oxygen-18</span>
+                    </div>
+                </div>
+
+                <div class="agriculture-card soil-analysis">
+                    <div class="icon">
+                        <i class="fas fa-microscope"></i>
+                    </div>
+                    <h3>Soil & Plant Analysis</h3>
+                    <p>Mass spectrometry and isotopic techniques allow for comprehensive analysis of nutrient uptake and environmental stress responses.</p>
+                    <div class="isotopes-used">
+                        <h4>Common Isotopes:</h4>
+                        <span>Nitrogen-15</span>
+                        <span>Deuterium</span>
+                        <span>Oxygen-18</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Economic Challenges Section -->
+    <section class="economic-challenges" style="padding: 80px 0; background: #f8f9fa;">
+        <div class="container">
+            <h2 style="text-align: center; margin-bottom: 1rem; color: #2c3e50;">Economic Challenges in Agricultural Isotope Applications</h2>
+            <p style="text-align: center; color: #666; max-width: 800px; margin: 0 auto 3rem;">While isotope applications offer significant benefits in agriculture, the industry faces various economic challenges that affect implementation costs and accessibility.</p>
+            
+            <div class="agriculture-grid">
+                <div class="agriculture-card" style="border-left: 4px solid #dc3545;">
+                    <h4><i class="fas fa-dollar-sign" style="color: #dc3545; margin-right: 0.5rem;"></i>High Equipment Costs</h4>
+                    <ul style="margin-top: 1rem;">
+                        <li>Mass spectrometers requiring $200,000-500,000 investment</li>
+                        <li>Specialized facilities for isotope production and handling</li>
+                        <li>Nuclear reactor or cyclotron access fees</li>
+                        <li>Specialized laboratory infrastructure and safety systems</li>
+                    </ul>
+                </div>
+
+                <div class="agriculture-card" style="border-left: 4px solid #fd7e14;">
+                    <h4><i class="fas fa-user-graduate" style="color: #fd7e14; margin-right: 0.5rem;"></i>Technical Expertise Requirements</h4>
+                    <ul style="margin-top: 1rem;">
+                        <li>Highly trained technicians for isotope handling</li>
+                        <li>Nuclear safety protocols and certification</li>
+                        <li>Complex data interpretation and analysis skills</li>
+                        <li>Limited availability of skilled workforce in rural areas</li>
+                    </ul>
+                </div>
+
+                <div class="agriculture-card" style="border-left: 4px solid #6f42c1;">
+                    <h4><i class="fas fa-shield-alt" style="color: #6f42c1; margin-right: 0.5rem;"></i>Safety & Regulatory Compliance</h4>
+                    <ul style="margin-top: 1rem;">
+                        <li>Stringent radiation safety measures and protocols</li>
+                        <li>Regulatory approval processes for field experiments</li>
+                        <li>Environmental monitoring and impact assessments</li>
+                        <li>Insurance and liability costs for radioactive materials</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Benefits Section -->
+    <section class="benefits-section">
+        <div class="container">
+            <h2 style="text-align: center; margin-bottom: 1rem; color: #2c3e50;">Key Benefits of Isotopic Agricultural Applications</h2>
+            <p style="text-align: center; color: #666; max-width: 800px; margin: 0 auto;">Isotopic technologies offer unique advantages that make them indispensable in modern agricultural research and sustainable farming practices.</p>
+            
+            <div class="benefits-grid">
+                <div class="benefit-item">
+                    <div class="icon">
+                        <i class="fas fa-crosshairs"></i>
+                    </div>
+                    <h4>Precision & Accuracy</h4>
+                    <p>Isotopic measurements provide unparalleled precision in tracking nutrient flows and plant processes.</p>
+                </div>
+
+                <div class="benefit-item">
+                    <div class="icon">
+                        <i class="fas fa-leaf"></i>
+                    </div>
+                    <h4>Non-Destructive</h4>
+                    <p>Analysis and monitoring without damaging crops or disrupting natural agricultural processes.</p>
+                </div>
+
+                <div class="benefit-item">
+                    <div class="icon">
+                        <i class="fas fa-chart-line"></i>
+                    </div>
+                    <h4>Real-Time Monitoring</h4>
+                    <p>Continuous monitoring enables immediate response to environmental changes and crop needs.</p>
+                </div>
+
+                <div class="benefit-item">
+                    <div class="icon">
+                        <i class="fas fa-seedling"></i>
+                    </div>
+                    <h4>Sustainable Solutions</h4>
+                    <p>Optimized fertilizer use, improved crop yields, and reduced environmental impact.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Recent News Section -->
+    <section class="recent-news" style="padding: 80px 0; background: linear-gradient(135deg, #56ab2f 0%, #a8e6cf 100%); color: white;">
+        <div class="container">
+            <h2 style="text-align: center; margin-bottom: 1rem; color: white;">Latest Agricultural Isotope News</h2>
+            <p style="text-align: center; color: rgba(255,255,255,0.9); max-width: 800px; margin: 0 auto 3rem;">Stay updated with the latest developments in agricultural isotope applications and sustainable farming technology</p>
+            
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 2rem;">
+                <article class="news-card" style="background: rgba(255,255,255,0.1); backdrop-filter: blur(10px); padding: 2rem; border-radius: 15px; border: 1px solid rgba(255,255,255,0.2); transition: transform 0.3s ease;">
+                    <div style="display: flex; align-items: center; margin-bottom: 1rem;">
+                        <div style="width: 8px; height: 8px; background: #00d4aa; border-radius: 50%; margin-right: 0.5rem;"></div>
+                        <span style="font-size: 0.9rem; opacity: 0.8;">July 2025</span>
+                    </div>
+                    <h3 style="margin-bottom: 1rem; color: #00d4aa;">IAEA Advances Agricultural Isotope Applications</h3>
+                    <p style="margin-bottom: 1.5rem; line-height: 1.6; opacity: 0.9;">International Atomic Energy Agency promotes isotopic techniques for sustainable agriculture and food security through global cooperation programs.</p>
+                    <a href="https://www.iaea.org/topics/isotopes-for-agriculture" target="_blank" style="color: #00d4aa; text-decoration: none; font-weight: 500; display: inline-flex; align-items: center;">
+                        Read Full Article <i class="fas fa-external-link-alt" style="margin-left: 0.5rem; font-size: 0.8rem;"></i>
+                    </a>
+                </article>
+
+                <article class="news-card" style="background: rgba(255,255,255,0.1); backdrop-filter: blur(10px); padding: 2rem; border-radius: 15px; border: 1px solid rgba(255,255,255,0.2); transition: transform 0.3s ease;">
+                    <div style="display: flex; align-items: center; margin-bottom: 1rem;">
+                        <div style="width: 8px; height: 8px; background: #ff6b6b; border-radius: 50%; margin-right: 0.5rem;"></div>
+                        <span style="font-size: 0.9rem; opacity: 0.8;">July 2025</span>
+                    </div>
+                    <h3 style="margin-bottom: 1rem; color: #ff6b6b;">USDA Research on Nitrogen-15 Applications</h3>
+                    <p style="margin-bottom: 1.5rem; line-height: 1.6; opacity: 0.9;">Department of Agriculture advances nitrogen fixation studies using stable isotope analysis for improved fertilizer efficiency and crop optimization.</p>
+                    <a href="https://www.usda.gov/topics/farming/agricultural-research" target="_blank" style="color: #ff6b6b; text-decoration: none; font-weight: 500; display: inline-flex; align-items: center;">
+                        Read Full Article <i class="fas fa-external-link-alt" style="margin-left: 0.5rem; font-size: 0.8rem;"></i>
+                    </a>
+                </article>
+
+                <article class="news-card" style="background: rgba(255,255,255,0.1); backdrop-filter: blur(10px); padding: 2rem; border-radius: 15px; border: 1px solid rgba(255,255,255,0.2); transition: transform 0.3s ease;">
+                    <div style="display: flex; align-items: center; margin-bottom: 1rem;">
+                        <div style="width: 8px; height: 8px; background: #4ecdc4; border-radius: 50%; margin-right: 0.5rem;"></div>
+                        <span style="font-size: 0.9rem; opacity: 0.8;">July 2025</span>
+                    </div>
+                    <h3 style="margin-bottom: 1rem; color: #4ecdc4;">DOE Supports Agricultural Isotope Research</h3>
+                    <p style="margin-bottom: 1.5rem; line-height: 1.6; opacity: 0.9;">Department of Energy funding advances mass spectrometry techniques for soil and plant analysis in sustainable farming applications.</p>
+                    <a href="https://www.energy.gov/science/bes" target="_blank" style="color: #4ecdc4; text-decoration: none; font-weight: 500; display: inline-flex; align-items: center;">
+                        Read Full Article <i class="fas fa-external-link-alt" style="margin-left: 0.5rem; font-size: 0.8rem;"></i>
+                    </a>
+                </article>
+
+                <article class="news-card" style="background: rgba(255,255,255,0.1); backdrop-filter: blur(10px); padding: 2rem; border-radius: 15px; border: 1px solid rgba(255,255,255,0.2); transition: transform 0.3s ease;">
+                    <div style="display: flex; align-items: center; margin-bottom: 1rem;">
+                        <div style="width: 8px; height: 8px; background: #f093fb; border-radius: 50%; margin-right: 0.5rem;"></div>
+                        <span style="font-size: 0.9rem; opacity: 0.8;">July 2025</span>
+                    </div>
+                    <h3 style="margin-bottom: 1rem; color: #f093fb;">Breakthrough in Field Experiment Techniques</h3>
+                    <p style="margin-bottom: 1.5rem; line-height: 1.6; opacity: 0.9;">New methodologies for conducting isotope field experiments improve accuracy and reliability in agricultural research applications.</p>
+                    <a href="https://onlinelibrary.wiley.com/journal/13652389" target="_blank" style="color: #f093fb; text-decoration: none; font-weight: 500; display: inline-flex; align-items: center;">
+                        Read Full Article <i class="fas fa-external-link-alt" style="margin-left: 0.5rem; font-size: 0.8rem;"></i>
+                    </a>
+                </article>
+
+                <article class="news-card" style="background: rgba(255,255,255,0.1); backdrop-filter: blur(10px); padding: 2rem; border-radius: 15px; border: 1px solid rgba(255,255,255,0.2); transition: transform 0.3s ease;">
+                    <div style="display: flex; align-items: center; margin-bottom: 1rem;">
+                        <div style="width: 8px; height: 8px; background: #96c93d; border-radius: 50%; margin-right: 0.5rem;"></div>
+                        <span style="font-size: 0.9rem; opacity: 0.8;">July 2025</span>
+                    </div>
+                    <h3 style="margin-bottom: 1rem; color: #96c93d;">Stable Isotope Analysis Advances in Soil Science</h3>
+                    <p style="margin-bottom: 1.5rem; line-height: 1.6; opacity: 0.9;">Researchers develop improved methods for stable isotope ratio analysis in agricultural soil and plant studies worldwide.</p>
+                    <a href="https://www.nature.com/subjects/agricultural-science" target="_blank" style="color: #96c93d; text-decoration: none; font-weight: 500; display: inline-flex; align-items: center;">
+                        Read Full Article <i class="fas fa-external-link-alt" style="margin-left: 0.5rem; font-size: 0.8rem;"></i>
+                    </a>
+                </article>
+            </div>
+        </div>
+    </section>
+
+    <!-- References Section -->
+    <section style="padding: 80px 0; background: #2c3e50; color: #ecf0f1;">
+        <div class="container">
+            <h2 style="text-align: center; margin-bottom: 2rem; color: white;">References & Sources</h2>
+            <div style="max-width: 800px; margin: 0 auto; line-height: 1.8;">
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem;">
+                    <div>
+                        <h4 style="color: #56ab2f; margin-bottom: 1rem;">Government Agencies</h4>
+                        <ul style="list-style: none; padding: 0;">
+                            <li style="margin-bottom: 0.5rem;"><a href="https://www.iaea.org/topics/isotopes-for-agriculture" target="_blank" style="color: #bdc3c7; text-decoration: none;">IAEA - Isotopes for Agriculture</a></li>
+                            <li style="margin-bottom: 0.5rem;"><a href="https://www.usda.gov/topics/farming/agricultural-research" target="_blank" style="color: #bdc3c7; text-decoration: none;">USDA Agricultural Research Service</a></li>
+                            <li style="margin-bottom: 0.5rem;"><a href="https://www.energy.gov/science/bes" target="_blank" style="color: #bdc3c7; text-decoration: none;">DOE - Basic Energy Sciences</a></li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h4 style="color: #56ab2f; margin-bottom: 1rem;">Research Publications</h4>
+                        <ul style="list-style: none; padding: 0;">
+                            <li style="margin-bottom: 0.5rem;"><a href="https://onlinelibrary.wiley.com/journal/13652389" target="_blank" style="color: #bdc3c7; text-decoration: none;">Plant, Cell & Environment Journal</a></li>
+                            <li style="margin-bottom: 0.5rem;"><a href="https://www.nature.com/subjects/agricultural-science" target="_blank" style="color: #bdc3c7; text-decoration: none;">Nature - Agricultural Science</a></li>
+                            <li style="margin-bottom: 0.5rem;"><a href="https://www.journals.elsevier.com/agriculture-ecosystems-and-environment" target="_blank" style="color: #bdc3c7; text-decoration: none;">Agriculture, Ecosystems & Environment</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3><i class="fas fa-atom"></i> IsotopeTech</h3>
+                    <p>Advancing agriculture through isotopic technologies and sustainable farming solutions.</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="index.html#applications">Applications</a></li>
+                        <li><a href="index.html#chatbot">AI Assistant</a></li>
+                        <li><a href="index.html#about">About</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Applications</h4>
+                    <ul>
+                        <li><a href="healthcare.html">Healthcare</a></li>
+                        <li><a href="agriculture.html">Agriculture</a></li>
+                        <li><a href="production.html">Production</a></li>
+                        <li><a href="art-science.html">Art & Science</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Resources</h4>
+                    <ul>
+                        <li><a href="#">Safety Guidelines</a></li>
+                        <li><a href="#">Regulations</a></li>
+                        <li><a href="#">Documentation</a></li>
+                        <li><a href="#">Support</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 IsotopeTech. All rights reserved. | Advancing sustainable agriculture through nuclear science.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

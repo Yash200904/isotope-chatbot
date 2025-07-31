@@ -1,0 +1,24 @@
+{
+  "name": "isotope-chatbot",
+  "version": "1.0.0",
+  "description": "Isotope Education Platform with AI Chatbot",
+  "type": "module",
+  "main": "local-chatbot.mjs",
+  "scripts": {
+    "start": "node local-chatbot.mjs",
+    "dev": "node local-chatbot.mjs"
+  },
+  "dependencies": {
+    "@huggingface/inference": "^4.6.1",
+    "cors": "^2.8.5",
+    "dotenv": "^17.2.1",
+    "express": "^5.1.0",
+    "node-fetch": "^2.7.0"
+  },
+  "engines": {
+    "node": "18.x"
+  },
+  "keywords": ["isotopes", "education", "chatbot", "nuclear", "medicine"],
+  "author": "Your Name",
+  "license": "MIT"
+}

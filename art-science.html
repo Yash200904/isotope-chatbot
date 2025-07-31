@@ -1,0 +1,777 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Art & Science Applications - IsotopeTech</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        .art-science-hero {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 120px 0 80px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .art-science-hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000"><defs><radialGradient id="a" cx="50%" cy="50%"><stop offset="0%" stop-color="%23ffffff" stop-opacity="0.1"/><stop offset="100%" stop-color="%23ffffff" stop-opacity="0"/></radialGradient></defs><circle cx="200" cy="200" r="100" fill="url(%23a)"/><circle cx="800" cy="300" r="150" fill="url(%23a)"/><circle cx="400" cy="700" r="120" fill="url(%23a)"/></svg>') no-repeat center center;
+            background-size: cover;
+        }
+        
+        .art-science-hero .container {
+            position: relative;
+            z-index: 1;
+        }
+        
+        .art-science-hero h1 {
+            font-size: 3.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+        }
+        
+        .art-science-hero p {
+            font-size: 1.25rem;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+        }
+        
+        .home-button {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: rgba(255,255,255,0.2);
+            color: white;
+            padding: 12px 24px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255,255,255,0.3);
+        }
+        
+        .home-button:hover {
+            background: rgba(255,255,255,0.3);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.2);
+        }
+        
+        .art-science-section {
+            padding: 80px 0;
+        }
+        
+        .art-science-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+        
+        .art-science-card {
+            background: white;
+            border-radius: 20px;
+            padding: 2rem;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+            border: 1px solid #f0f0f0;
+        }
+        
+        .art-science-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 50px rgba(0,0,0,0.15);
+        }
+        
+        .art-science-card .icon {
+            width: 60px;
+            height: 60px;
+            border-radius: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            color: white;
+            margin-bottom: 1.5rem;
+        }
+        
+        .archaeological-dating .icon { background: linear-gradient(45deg, #ff6b6b, #ff8e8e); }
+        .art-authentication .icon { background: linear-gradient(45deg, #4ecdc4, #44b7c6); }
+        .environmental .icon { background: linear-gradient(45deg, #45b7d1, #96c93d); }
+        .forensic .icon { background: linear-gradient(45deg, #f093fb, #f5576c); }
+        .nuclear-physics .icon { background: linear-gradient(45deg, #667eea, #764ba2); }
+        .space-research .icon { background: linear-gradient(45deg, #ff9a9e, #fecfef); }
+        
+        .art-science-card h3 {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            color: #2c3e50;
+        }
+        
+        .art-science-card p {
+            color: #666;
+            line-height: 1.6;
+            margin-bottom: 1.5rem;
+        }
+        
+        .art-science-card ul {
+            list-style: none;
+            padding: 0;
+        }
+        
+        .art-science-card ul li {
+            padding: 0.5rem 0;
+            color: #555;
+            position: relative;
+            padding-left: 1.5rem;
+        }
+        
+        .art-science-card ul li::before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: #27ae60;
+            font-weight: bold;
+        }
+
+        /* Economic Challenges specific styling */
+        .economic-challenges .art-science-card ul {
+            list-style: none;
+            padding: 0;
+        }
+        
+        .economic-challenges .art-science-card ul li {
+            padding: 0.5rem 0;
+            color: #555;
+            position: relative;
+            padding-left: 1.5rem;
+        }
+        
+        .economic-challenges .art-science-card ul li::before {
+            content: '•';
+            position: absolute;
+            left: 0;
+            color: #666;
+            font-weight: bold;
+        }
+
+        .economic-challenges .art-science-card h4 {
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            color: #2c3e50;
+        }
+        
+        .isotopes-used {
+            background: #f8f9fa;
+            padding: 1rem;
+            border-radius: 10px;
+            margin-top: 1rem;
+        }
+        
+        .isotopes-used h4 {
+            font-size: 0.9rem;
+            font-weight: 600;
+            color: #495057;
+            margin-bottom: 0.5rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        
+        .isotopes-used span {
+            display: inline-block;
+            background: #e9ecef;
+            color: #495057;
+            padding: 0.25rem 0.75rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            margin: 0.25rem 0.25rem 0.25rem 0;
+            font-weight: 500;
+        }
+        
+        .benefits-section {
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            padding: 80px 0;
+        }
+        
+        .benefits-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+        
+        .benefit-item {
+            text-align: center;
+            padding: 2rem;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+        }
+        
+        .benefit-item .icon {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            color: #667eea;
+        }
+        
+        .benefit-item h4 {
+            font-size: 1.25rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            color: #2c3e50;
+        }
+        
+        .benefit-item p {
+            color: #666;
+            line-height: 1.6;
+        }
+        
+        @media (max-width: 768px) {
+            .art-science-hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            .art-science-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .benefits-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* News Card Hover Effects */
+        .news-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+        }
+
+        @media (max-width: 768px) {
+            .recent-news .container > div {
+                grid-template-columns: 1fr !important;
+            }
+        }
+
+        /* Additional styles for the new layout */
+        .navbar {
+            background: #2c3e50;
+            padding: 1rem 0;
+        }
+        
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1rem;
+        }
+        
+        .nav-logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: white;
+            display: flex;
+            align-items: center;
+        }
+        
+        .nav-logo i {
+            margin-right: 0.5rem;
+            color: #3498db;
+        }
+        
+        .nav-menu {
+            list-style: none;
+            display: flex;
+            gap: 2rem;
+        }
+        
+        .nav-menu li a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+        
+        .nav-menu li a:hover {
+            color: #3498db;
+        }
+        
+        .footer {
+            background: #34495e;
+            color: white;
+            padding: 2rem 0;
+            font-size: 0.9rem;
+        }
+        
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 2rem;
+        }
+        
+        .footer-section {
+            flex: 1;
+            min-width: 250px;
+        }
+        
+        .footer-section h3 {
+            font-size: 1.25rem;
+            margin-bottom: 1rem;
+            color: #3498db;
+        }
+        
+        .footer-section ul {
+            list-style: none;
+            padding: 0;
+        }
+        
+        .footer-section ul li a {
+            color: #bdc3c7;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+        
+        .footer-section ul li a:hover {
+            color: #fff;
+        }
+        
+        .footer-bottom {
+            text-align: center;
+            margin-top: 2rem;
+            border-top: 1px solid #2c3e50;
+            padding-top: 1rem;
+            font-size: 0.8rem;
+            color: #bdc3c7;
+        }
+        
+        .references-section {
+            padding: 60px 0;
+            background: #2c3e50;
+            color: white;
+        }
+        
+        .references-section h2 {
+            text-align: center;
+            margin-bottom: 2rem;
+            color: white;
+        }
+        
+        .references-section a {
+            color: #3498db;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+        
+        .references-section a:hover {
+            color: #fff;
+        }
+        
+        .economic-challenges {
+            padding: 80px 0;
+            background: #f8f9fa;
+        }
+        
+        .economic-challenges h2 {
+            text-align: center;
+            margin-bottom: 1rem;
+            color: #2c3e50;
+        }
+        
+        .economic-challenges p {
+            text-align: center;
+            color: #666;
+            max-width: 800px;
+            margin: 0 auto 3rem;
+        }
+        
+        .economic-challenges .art-science-card {
+            background: white;
+            border-radius: 15px;
+            padding: 2rem;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+        }
+        
+        .economic-challenges .art-science-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+        }
+        
+        .ethical-considerations {
+            padding: 80px 0;
+            background: #f8f9fa;
+        }
+        
+        .ethical-considerations h2 {
+            text-align: center;
+            margin-bottom: 1rem;
+            color: #2c3e50;
+        }
+        
+        .ethical-considerations p {
+            text-align: center;
+            color: #666;
+            max-width: 800px;
+            margin: 0 auto 3rem;
+        }
+        
+        .ethical-considerations .benefits-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+        
+        .ethical-considerations .benefit-item {
+            text-align: center;
+            padding: 2rem;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+        }
+        
+        .ethical-considerations .benefit-item .icon {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            color: #667eea;
+        }
+        
+        .ethical-considerations .benefit-item h4 {
+            font-size: 1.25rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            color: #2c3e50;
+        }
+        
+        .ethical-considerations .benefit-item p {
+            color: #666;
+            line-height: 1.6;
+        }
+        
+        .interactive-modules {
+            padding: 80px 0;
+        }
+        
+        .interactive-modules h2 {
+            text-align: center;
+            margin-bottom: 1rem;
+            color: #2c3e50;
+        }
+        
+        .interactive-modules p {
+            text-align: center;
+            color: #666;
+            max-width: 800px;
+            margin: 0 auto 3rem;
+        }
+        
+        .interactive-modules .art-science-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+        
+        .interactive-modules .art-science-card {
+            background: white;
+            border-radius: 15px;
+            padding: 2rem;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+        }
+        
+        .interactive-modules .art-science-card h3 {
+            font-size: 1.25rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            color: #2c3e50;
+        }
+        
+        .interactive-modules .art-science-card p {
+            color: #666;
+            line-height: 1.6;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <i class="fas fa-atom"></i>
+                <span>IsotopeTech</span>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="index.html#applications">Applications</a></li>
+                <li><a href="index.html#chatbot">Chat</a></li>
+                <li><a href="index.html#about">About</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="art-science-hero">
+        <div class="container">
+            <h1><i class="fas fa-landmark"></i> Art & Society Applications</h1>
+            <p>Explore how nuclear isotopes transform art restoration, authentication, and cultural heritage preservation.</p>
+            <a href="index.html" class="home-button">
+                <i class="fas fa-home"></i>
+                Back to Homepage
+            </a>
+        </div>
+    </section>
+
+    <!-- Main Applications Section -->
+    <section class="art-science-section">
+        <div class="container">
+            <h2 style="text-align: center; margin-bottom: 1rem; color: #2c3e50;">Key Applications in Art & Cultural Heritage</h2>
+            <p style="text-align: center; color: #666; max-width: 800px; margin: 0 auto;">Nuclear isotopes offer unique solutions for restoration, dating, and contamination response in art and society.</p>
+            <div class="art-science-grid">
+                <div class="art-science-card">
+                    <div class="icon" style="background: linear-gradient(45deg, #ff6b6b, #ff8e8e);"><i class="fas fa-broom"></i></div>
+                    <h3>Disinfection & Restoration</h3>
+                    <p>Gamma irradiation and radiocurable resins are used to disinfect and consolidate valuable artworks, manuscripts, and sculptures.</p>
+                    <div class="isotopes-used"><h4>Techniques:</h4><span>Gamma irradiation</span><span>Resin treatment</span></div>
+                </div>
+                <div class="art-science-card">
+                    <div class="icon" style="background: linear-gradient(45deg, #4ecdc4, #44b7c6);"><i class="fas fa-history"></i></div>
+                    <h3>Dating & Authentication</h3>
+                    <p>Carbon-14 dating and isotope fingerprinting authenticate artifacts and prevent fraud in the art market and historical research.</p>
+                    <div class="isotopes-used"><h4>Techniques:</h4><span>Carbon-14 dating</span><span>Isotope fingerprinting</span></div>
+                </div>
+                <div class="art-science-card">
+                    <div class="icon" style="background: linear-gradient(45deg, #45b7d1, #96c93d);"><i class="fas fa-biohazard"></i></div>
+                    <h3>Contamination Response</h3>
+                    <p>Isotopic methods help mitigate losses in tourism and agriculture by responding to contamination events affecting heritage sites.</p>
+                    <div class="isotopes-used"><h4>Techniques:</h4><span>Environmental monitoring</span></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Economic Benefits Section -->
+    <section class="benefits-section">
+        <div class="container">
+            <h2 style="text-align: center; margin-bottom: 1rem; color: #2c3e50;">Economic Benefits</h2>
+            <p style="text-align: center; color: #666; max-width: 800px; margin: 0 auto;">Isotope applications in art and heritage deliver measurable economic value.</p>
+            <div class="benefits-grid">
+                <div class="benefit-item"><div class="icon"><i class="fas fa-dollar-sign"></i></div><h4>Restoration Cost Reduction</h4><p>Lower long-term costs for artifact and site restoration.</p></div>
+                <div class="benefit-item"><div class="icon"><i class="fas fa-users"></i></div><h4>Tourism Boost</h4><p>Preserved heritage sites attract more visitors and increase cultural tourism.</p></div>
+                <div class="benefit-item"><div class="icon"><i class="fas fa-globe"></i></div><h4>Global Recognition</h4><p>Enhanced international reputation for sites using advanced preservation methods.</p></div>
+                <div class="benefit-item"><div class="icon"><i class="fas fa-shield-alt"></i></div><h4>Fraud Prevention</h4><p>Authentication techniques prevent art fraud and protect cultural assets.</p></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Economic Challenges Section -->
+    <section class="economic-challenges" style="padding: 80px 0; background: #f8f9fa;">
+        <div class="container">
+            <h2 style="text-align: center; margin-bottom: 1rem; color: #2c3e50;">Economic Challenges in Art & Heritage Preservation</h2>
+            <p style="text-align: center; color: #666; max-width: 800px; margin: 0 auto 3rem;">While isotope applications offer significant benefits in cultural preservation, the industry faces various economic challenges that affect adoption and accessibility.</p>
+            
+            <div class="art-science-grid">
+                <div class="art-science-card" style="border-left: 4px solid #dc3545;">
+                    <h4><i class="fas fa-dollar-sign" style="color: #dc3545; margin-right: 0.5rem;"></i>High Setup & Maintenance Costs</h4>
+                    <ul style="margin-top: 1rem;">
+                        <li>Specialized irradiation facilities requiring significant capital investment</li>
+                        <li>Advanced equipment for isotopic analysis and dating</li>
+                        <li>Ongoing maintenance and calibration expenses</li>
+                        <li>High insurance and safety compliance costs</li>
+                    </ul>
+                </div>
+
+                <div class="art-science-card" style="border-left: 4px solid #fd7e14;">
+                    <h4><i class="fas fa-user-graduate" style="color: #fd7e14; margin-right: 0.5rem;"></i>Workforce & Infrastructure</h4>
+                    <ul style="margin-top: 1rem;">
+                        <li>Shortage of trained nuclear heritage specialists</li>
+                        <li>Limited infrastructure in developing regions</li>
+                        <li>Continuous professional development requirements</li>
+                        <li>Competition with other nuclear industry sectors</li>
+                    </ul>
+                </div>
+
+                <div class="art-science-card" style="border-left: 4px solid #6f42c1;">
+                    <h4><i class="fas fa-balance-scale" style="color: #6f42c1; margin-right: 0.5rem;"></i>Regulatory & Public Perception</h4>
+                    <ul style="margin-top: 1rem;">
+                        <li>Complex regulatory approval processes</li>
+                        <li>Public stigma around radiation-based technologies</li>
+                        <li>International shipping restrictions for radioactive materials</li>
+                        <li>Ethical concerns about cultural artifact treatment</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Societal & Ethical Considerations -->
+    <section class="benefits-section">
+        <div class="container">
+            <h2 style="text-align: center; margin-bottom: 1rem; color: #2c3e50;">Societal & Ethical Considerations</h2>
+            <p style="text-align: center; color: #666; max-width: 800px; margin: 0 auto;">Ethical and social issues in the use of nuclear isotopes for art and heritage.</p>
+            <div class="benefits-grid">
+                <div class="benefit-item"><div class="icon"><i class="fas fa-balance-scale"></i></div><h4>Ethical Data Use</h4><p>Responsible collection and sharing of archaeological isotopic data.</p></div>
+                <div class="benefit-item"><div class="icon"><i class="fas fa-exclamation-circle"></i></div><h4>Public Perception</h4><p>Addressing stigma and misunderstanding around irradiation and nuclear methods.</p></div>
+                <div class="benefit-item"><div class="icon"><i class="fas fa-home"></i></div><h4>Displacement Issues</h4><p>Managing property devaluation and displacement in contamination scenarios.</p></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Recent News Section -->
+    <section class="recent-news" style="padding: 80px 0; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white;">
+        <div class="container">
+            <h2 style="text-align: center; margin-bottom: 1rem; color: white;">Latest Cultural Heritage News</h2>
+            <p style="text-align: center; color: rgba(255,255,255,0.9); max-width: 800px; margin: 0 auto 3rem;">Stay updated with the latest developments in cultural heritage preservation and isotope applications in art and archaeology</p>
+            
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 2rem;">
+                <article class="news-card" style="background: rgba(255,255,255,0.1); backdrop-filter: blur(10px); padding: 2rem; border-radius: 15px; border: 1px solid rgba(255,255,255,0.2); transition: transform 0.3s ease;">
+                    <div style="display: flex; align-items: center; margin-bottom: 1rem;">
+                        <div style="width: 8px; height: 8px; background: #00d4aa; border-radius: 50%; margin-right: 0.5rem;"></div>
+                        <span style="font-size: 0.9rem; opacity: 0.8;">July 2025</span>
+                    </div>
+                    <h3 style="margin-bottom: 1rem; color: #00d4aa;">IAEA Advances Radiation-Based Heritage Preservation</h3>
+                    <p style="margin-bottom: 1.5rem; line-height: 1.6; opacity: 0.9;">International Atomic Energy Agency showcases breakthrough radiation technologies for cultural heritage preservation, including gamma irradiation for manuscript disinfection and artifact consolidation.</p>
+                    <a href="https://www.iaea.org/newscenter/news/enhancing-cultural-heritage-preservation-using-radiation-based-technologies" target="_blank" style="color: #00d4aa; text-decoration: none; font-weight: 500; display: inline-flex; align-items: center;">
+                        Read Full Article <i class="fas fa-external-link-alt" style="margin-left: 0.5rem; font-size: 0.8rem;"></i>
+                    </a>
+                </article>
+
+                <article class="news-card" style="background: rgba(255,255,255,0.1); backdrop-filter: blur(10px); padding: 2rem; border-radius: 15px; border: 1px solid rgba(255,255,255,0.2); transition: transform 0.3s ease;">
+                    <div style="display: flex; align-items: center; margin-bottom: 1rem;">
+                        <div style="width: 8px; height: 8px; background: #ff6b6b; border-radius: 50%; margin-right: 0.5rem;"></div>
+                        <span style="font-size: 0.9rem; opacity: 0.8;">July 2025</span>
+                    </div>
+                    <h3 style="margin-bottom: 1rem; color: #ff6b6b;">Carbon-14 Dating Revolutionizes Archaeological Research</h3>
+                    <p style="margin-bottom: 1.5rem; line-height: 1.6; opacity: 0.9;">New advances in radiocarbon dating techniques provide unprecedented accuracy in dating ancient artifacts, revolutionizing our understanding of historical timelines and cultural development.</p>
+                    <a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC11035956/" target="_blank" style="color: #ff6b6b; text-decoration: none; font-weight: 500; display: inline-flex; align-items: center;">
+                        Read Full Article <i class="fas fa-external-link-alt" style="margin-left: 0.5rem; font-size: 0.8rem;"></i>
+                    </a>
+                </article>
+
+                <article class="news-card" style="background: rgba(255,255,255,0.1); backdrop-filter: blur(10px); padding: 2rem; border-radius: 15px; border: 1px solid rgba(255,255,255,0.2); transition: transform 0.3s ease;">
+                    <div style="display: flex; align-items: center; margin-bottom: 1rem;">
+                        <div style="width: 8px; height: 8px; background: #4ecdc4; border-radius: 50%; margin-right: 0.5rem;"></div>
+                        <span style="font-size: 0.9rem; opacity: 0.8;">July 2025</span>
+                    </div>
+                    <h3 style="margin-bottom: 1rem; color: #4ecdc4;">Isotope Analysis Prevents Art Fraud in Global Markets</h3>
+                    <p style="margin-bottom: 1.5rem; line-height: 1.6; opacity: 0.9;">Advanced isotopic fingerprinting techniques help authenticate valuable artworks and prevent fraud, protecting cultural assets and maintaining market integrity worldwide.</p>
+                    <a href="https://www.timeshighereducation.com/news/isotopes-for-society/195627.article" target="_blank" style="color: #4ecdc4; text-decoration: none; font-weight: 500; display: inline-flex; align-items: center;">
+                        Read Full Article <i class="fas fa-external-link-alt" style="margin-left: 0.5rem; font-size: 0.8rem;"></i>
+                    </a>
+                </article>
+
+                <article class="news-card" style="background: rgba(255,255,255,0.1); backdrop-filter: blur(10px); padding: 2rem; border-radius: 15px; border: 1px solid rgba(255,255,255,0.2); transition: transform 0.3s ease;">
+                    <div style="display: flex; align-items: center; margin-bottom: 1rem;">
+                        <div style="width: 8px; height: 8px; background: #f093fb; border-radius: 50%; margin-right: 0.5rem;"></div>
+                        <span style="font-size: 0.9rem; opacity: 0.8;">July 2025</span>
+                    </div>
+                    <h3 style="margin-bottom: 1rem; color: #f093fb;">UNESCO Partners on Nuclear Heritage Preservation</h3>
+                    <p style="margin-bottom: 1.5rem; line-height: 1.6; opacity: 0.9;">UNESCO and IAEA collaborate on global initiative to use nuclear technologies for preserving World Heritage Sites, focusing on sustainable conservation methods.</p>
+                    <a href="https://www.iaea.org/newscenter" target="_blank" style="color: #f093fb; text-decoration: none; font-weight: 500; display: inline-flex; align-items: center;">
+                        Read Full Article <i class="fas fa-external-link-alt" style="margin-left: 0.5rem; font-size: 0.8rem;"></i>
+                    </a>
+                </article>
+
+                <article class="news-card" style="background: rgba(255,255,255,0.1); backdrop-filter: blur(10px); padding: 2rem; border-radius: 15px; border: 1px solid rgba(255,255,255,0.2); transition: transform 0.3s ease;">
+                    <div style="display: flex; align-items: center; margin-bottom: 1rem;">
+                        <div style="width: 8px; height: 8px; background: #96c93d; border-radius: 50%; margin-right: 0.5rem;"></div>
+                        <span style="font-size: 0.9rem; opacity: 0.8;">July 2025</span>
+                    </div>
+                    <h3 style="margin-bottom: 1rem; color: #96c93d;">Digital Archive Project Uses Isotope Data</h3>
+                    <p style="margin-bottom: 1.5rem; line-height: 1.6; opacity: 0.9;">Groundbreaking digital heritage project combines isotopic analysis with AI to create comprehensive databases of cultural artifacts and their provenance.</p>
+                    <a href="https://energy.sustainability-directory.com/question/what-are-the-economic-impacts-of-reprocessing/" target="_blank" style="color: #96c93d; text-decoration: none; font-weight: 500; display: inline-flex; align-items: center;">
+                        Read Full Article <i class="fas fa-external-link-alt" style="margin-left: 0.5rem; font-size: 0.8rem;"></i>
+                    </a>
+                </article>
+            </div>
+
+            <div style="text-align: center; margin-top: 3rem;">
+                <p style="opacity: 0.8; margin-bottom: 1rem;">Sources: IAEA, UNESCO, PMC, Times Higher Education</p>
+                <a href="https://www.iaea.org/newscenter" target="_blank" style="display: inline-block; background: rgba(255,255,255,0.2); color: white; padding: 0.8rem 2rem; border-radius: 25px; text-decoration: none; font-weight: 500; transition: all 0.3s ease; border: 1px solid rgba(255,255,255,0.3);">
+                    <i class="fas fa-newspaper" style="margin-right: 0.5rem;"></i>
+                    View More Heritage News
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- References Section -->
+    <section class="references-section" style="padding: 60px 0; background: #2c3e50; color: white;">
+        <div class="container">
+            <h2 style="text-align: center; margin-bottom: 2rem; color: white;">References & Further Reading</h2>
+            <div style="max-width: 1000px; margin: 0 auto;">
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(400px, 1fr)); gap: 2rem;">
+                    <div>
+                        <h4 style="color: #3498db; margin-bottom: 1rem;"><i class="fas fa-book"></i> Key Resources</h4>
+                        <ul style="list-style-type: none; padding: 0; line-height: 1.8;">
+                            <li><a href="https://www.iaea.org/newscenter/news/enhancing-cultural-heritage-preservation-using-radiation-based-technologies" target="_blank" style="color: #fff;">IAEA: Cultural Heritage Preservation</a></li>
+                            <li><a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC11035956/" target="_blank" style="color: #fff;">PMC: Radiation-Based Technologies</a></li>
+                            <li><a href="https://www.timeshighereducation.com/news/isotopes-for-society/195627.article" target="_blank" style="color: #fff;">Times Higher Education: Isotopes for Society</a></li>
+                            <li><a href="https://energy.sustainability-directory.com/question/what-are-the-economic-impacts-of-reprocessing/" target="_blank" style="color: #fff;">Sustainability Directory: Economic Impacts</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div style="margin-top: 2rem; padding-top: 2rem; border-top: 1px solid #34495e; text-align: center; font-size: 0.9rem; color: #bdc3c7;">
+                    <p><i class="fas fa-info-circle"></i> Content based on peer-reviewed sources and official reports. Economic data reflects market analysis from 2019-2024.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3><i class="fas fa-atom"></i> IsotopeTech</h3>
+                    <p>Advancing scientific discovery through isotopic analysis and research technologies.</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="index.html#applications">Applications</a></li>
+                        <li><a href="index.html#chatbot">AI Assistant</a></li>
+                        <li><a href="index.html#about">About</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Applications</h4>
+                    <ul>
+                        <li><a href="healthcare.html">Healthcare</a></li>
+                        <li><a href="agriculture.html">Agriculture</a></li>
+                        <li><a href="production.html">Production</a></li>
+                        <li><a href="art-science.html">Art & Science</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Resources</h4>
+                    <ul>
+                        <li><a href="#">Safety Guidelines</a></li>
+                        <li><a href="#">Regulations</a></li>
+                        <li><a href="#">Documentation</a></li>
+                        <li><a href="#">Support</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 IsotopeTech. All rights reserved. | Exploring the universe through nuclear science.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js?v=999"></script>
+</body>
+</html>

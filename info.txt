@@ -1,0 +1,39 @@
+AGRICULTURE SECTOR 
+
+•   Methods of obtaining isotopes :
+
+1. Nuclear Reactors:
+   – Nuclear reactors can produce isotopes through neutron activation. This method is often used to create stable isotopes for agricultural research, such as nitrogen-15 for studying nitrogen fixation in plants.
+   – Source:
+https://www.iaea.org/topics/radioisotope-production-in-research-reactors
+
+2. Cyclotrons:
+   – Cyclotrons are used to produce radioisotopes for various applications, including agriculture. They can generate isotopes like carbon-14, which is useful in tracing carbon dynamics in ecosystems.
+   – Source: https://wwwpub.iaea.org/MTCD/Publications/PDF/trs465_web.pdf
+
+
+1. Isotope Enrichment Techniques:
+
+   – Techniques such as gas diffusion or gas centrifugation can be employed to enrich specific isotopes, which can be used in various agricultural studies, including those related to water usage and nutrient uptake.
+   – Source: https://www.energy.gov/science/ip/isotope-rd-and-production-doe-ip
+
+
+1. Stable Isotope Ratio Analysis:
+
+   – This method involves the use of mass spectrometry to analyze the ratio of stable isotopes in samples from soil or plants. It provides insights into nutrient cycling and plant responses to environmental changes.
+   – Source: https://onlinelibrary.wiley.com/doi/abs/10.1002/9781119373421.ch11
+
+
+
+1. Field Experiments with Isotopes:
+
+   – Controlled field experiments using isotopes help in understanding plant growth, nutrient absorption, and the effects of fertilizers. These experiments often utilize isotopes like nitrogen-15.
+   –Source: https://www.ars.usda.gov/research/project/?accnNo=444242
+
+1. Nuclear Reactors:
+   – How it Happens: Nuclear reactors produce isotopes through a process called neutron activation. In this method, stable isotopes in a target material (like nitrogen) are bombarded with neutrons. This interaction can convert stable isotopes into radioactive isotopes or change their properties. For example, nitrogen-14 can be transformed into nitrogen-15.
+   – Application: Nitrogen-15 is particularly valuable in agricultural research for studying nitrogen fixation in plants, helping scientists understand how plants absorb nitrogen from the soil and the atmosphere.
+
+2. Cyclotrons:
+   – How it Happens: Cyclotrons accelerate charged particles (like protons) to high speeds and direct them onto a target material. When these particles collide with the target, nuclear reactions occur that can produce various isotopes. For instance, carbon-14 is produced when nitrogen-14 captures a neutron and undergoes beta decay.
+   – Application: Carbon-14 is used in tracing carbon dynamics in ecosystems, allowing researchers to study carbon cycling in soil and plant systems,

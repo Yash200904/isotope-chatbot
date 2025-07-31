@@ -1,0 +1,569 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Healthcare Applications - IsotopeTech</title>
+    <meta name="description" content="Comprehensive guide to isotope applications in healthcare, including diagnostic imaging, cancer treatment, and nuclear medicine.">
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        .healthcare-hero {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 120px 0 80px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .healthcare-hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000"><defs><radialGradient id="a" cx="50%" cy="50%"><stop offset="0%" stop-color="%23ffffff" stop-opacity="0.1"/><stop offset="100%" stop-color="%23ffffff" stop-opacity="0"/></radialGradient></defs><circle cx="200" cy="200" r="100" fill="url(%23a)"/><circle cx="800" cy="300" r="150" fill="url(%23a)"/><circle cx="400" cy="700" r="120" fill="url(%23a)"/></svg>') no-repeat center center;
+            background-size: cover;
+        }
+        
+        .healthcare-hero .container {
+            position: relative;
+            z-index: 1;
+        }
+        
+        .healthcare-hero h1 {
+            font-size: 3.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+        }
+        
+        .healthcare-hero p {
+            font-size: 1.25rem;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+        }
+        
+        .home-button {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: rgba(255,255,255,0.2);
+            color: white;
+            padding: 12px 24px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255,255,255,0.3);
+        }
+        
+        .home-button:hover {
+            background: rgba(255,255,255,0.3);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.2);
+        }
+        
+        .healthcare-section {
+            padding: 80px 0;
+        }
+        
+        .healthcare-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+        
+        .medical-production {
+            grid-column: 1 / -1;
+        }
+        
+        @media (min-width: 768px) {
+            .healthcare-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .medical-production {
+                grid-column: span 2;
+            }
+        }
+
+        /* Special styling for healthcare applications section */
+        .healthcare-applications .healthcare-grid {
+            grid-template-columns: repeat(3, 1fr);
+        }
+
+        @media (max-width: 1200px) {
+            .healthcare-applications .healthcare-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .healthcare-applications .healthcare-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* News Card Hover Effects */
+        .news-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+        }
+
+        @media (max-width: 768px) {
+            .recent-news .container > div {
+                grid-template-columns: 1fr !important;
+            }
+        }
+        
+        .healthcare-card {
+            background: white;
+            border-radius: 20px;
+            padding: 2rem;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+            border: 1px solid #f0f0f0;
+        }
+        
+        .healthcare-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 50px rgba(0,0,0,0.15);
+        }
+        
+        .healthcare-card .icon {
+            width: 60px;
+            height: 60px;
+            border-radius: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            color: white;
+            margin-bottom: 1.5rem;
+        }
+        
+        .diagnostic-imaging .icon { background: linear-gradient(45deg, #667eea, #764ba2); }
+        .cancer-treatment .icon { background: linear-gradient(45deg, #ff6b6b, #ff8e8e); }
+        .nuclear-medicine .icon { background: linear-gradient(45deg, #4ecdc4, #44b7c6); }
+        
+        .healthcare-card h3 {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            color: #2c3e50;
+        }
+        
+        .healthcare-card p {
+            color: #666;
+            line-height: 1.6;
+            margin-bottom: 1.5rem;
+        }
+        
+        .healthcare-card ul {
+            list-style: none;
+            padding: 0;
+        }
+        
+        .healthcare-card ul li {
+            padding: 0.5rem 0;
+            color: #555;
+            position: relative;
+            padding-left: 1.5rem;
+        }
+        
+        .healthcare-card ul li::before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: #27ae60;
+            font-weight: bold;
+        }
+        
+        .isotopes-used {
+            background: #f8f9fa;
+            padding: 1rem;
+            border-radius: 10px;
+            margin-top: 1rem;
+        }
+        
+        .isotopes-used h4 {
+            font-size: 0.9rem;
+            font-weight: 600;
+            color: #495057;
+            margin-bottom: 0.5rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        
+        .isotopes-used span {
+            display: inline-block;
+            background: #e9ecef;
+            color: #495057;
+            padding: 0.25rem 0.75rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            margin: 0.25rem 0.25rem 0.25rem 0;
+            font-weight: 500;
+        }
+        
+        .benefits-section {
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            padding: 80px 0;
+        }
+        
+        .benefits-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+        
+        .economic-challenges .healthcare-grid {
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        }
+        
+        .benefit-item {
+            text-align: center;
+            padding: 2rem;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+        }
+        
+        .benefit-item .icon {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            color: #667eea;
+        }
+        
+        .benefit-item h4 {
+            font-size: 1.25rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            color: #2c3e50;
+        }
+        
+        .benefit-item p {
+            color: #666;
+            line-height: 1.6;
+        }
+
+        /* Economic Challenges specific styling */
+        .economic-challenges .healthcare-card ul {
+            list-style: none;
+            padding: 0;
+        }
+        
+        .economic-challenges .healthcare-card ul li {
+            padding: 0.5rem 0;
+            color: #555;
+            position: relative;
+            padding-left: 1.5rem;
+        }
+        
+        .economic-challenges .healthcare-card ul li::before {
+            content: '•';
+            position: absolute;
+            left: 0;
+            color: #666;
+            font-weight: bold;
+        }
+
+        .economic-challenges .healthcare-card h4 {
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            color: #2c3e50;
+        }
+        
+        @media (max-width: 768px) {
+            .healthcare-hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            .healthcare-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .benefits-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <i class="fas fa-atom"></i>
+                <span>IsotopeTech</span>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="healthcare.html" class="active">Healthcare</a></li>
+                <li><a href="agriculture.html">Agriculture</a></li>
+                <li><a href="production.html">Production</a></li>
+                <li><a href="art-science.html">Art & Science</a></li>
+            </ul>
+            <div class="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="healthcare-hero">
+        <div class="container">
+            <h1>Healthcare Applications</h1>
+            <p>Discover how isotopes are revolutionizing modern medicine through diagnostic imaging, targeted therapies, and life-saving treatments.</p>
+            <a href="index.html" class="home-button">
+                <i class="fas fa-home"></i>
+                Return to Home
+            </a>
+        </div>
+    </section>
+
+    <!-- Key Healthcare Applications Section -->
+    <section class="healthcare-section healthcare-applications">
+        <div class="container">
+            <h2 style="text-align: center; margin-bottom: 1rem; color: #2c3e50;">Key Healthcare Applications</h2>
+            <p style="text-align: center; color: #666; max-width: 800px; margin: 0 auto;">Radioactive isotopes have transformed modern medicine, enabling precise diagnostics, targeted treatments, and life-saving therapies.</p>
+            
+            <div class="healthcare-grid">
+                <div class="healthcare-card diagnostic-imaging">
+                    <div class="icon">
+                        <i class="fas fa-x-ray"></i>
+                    </div>
+                    <h3>Diagnostic Imaging</h3>
+                    <p>Advanced imaging techniques using radiopharmaceuticals provide detailed views of internal organs and biological processes for accurate diagnosis.</p>
+                    <div class="isotopes-used">
+                        <h4>Key Isotopes:</h4>
+                        <span>Technetium-99m</span>
+                        <span>Fluorine-18</span>
+                        <span>Iodine-123</span>
+                    </div>
+                </div>
+
+                <div class="healthcare-card cancer-treatment">
+                    <div class="icon">
+                        <i class="fas fa-shield-virus"></i>
+                    </div>
+                    <h3>Cancer Treatment</h3>
+                    <p>Targeted radiation therapy and radiopharmaceuticals deliver precise treatment to cancer cells while minimizing damage to healthy tissue.</p>
+                    <div class="isotopes-used">
+                        <h4>Key Isotopes:</h4>
+                        <span>Iodine-131</span>
+                        <span>Cobalt-60</span>
+                        <span>Lutetium-177</span>
+                    </div>
+                </div>
+
+                <div class="healthcare-card nuclear-medicine">
+                    <div class="icon">
+                        <i class="fas fa-heartbeat"></i>
+                    </div>
+                    <h3>Nuclear Medicine</h3>
+                    <p>Therapeutic and diagnostic procedures using radioactive tracers to treat diseases and monitor organ function with minimal invasive procedures.</p>
+                    <div class="isotopes-used">
+                        <h4>Key Isotopes:</h4>
+                        <span>Technetium-99m</span>
+                        <span>Thallium-201</span>
+                        <span>Gallium-67</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Economic Challenges Section -->
+    <section class="healthcare-section economic-challenges">
+        <div class="container">
+            <h2 style="text-align: center; margin-bottom: 1rem; color: #2c3e50;">Economic Challenges</h2>
+            <p style="text-align: center; color: #666; max-width: 800px; margin: 0 auto;">While isotopic healthcare offers significant benefits, implementation faces several economic and infrastructure challenges.</p>
+            
+            <div class="healthcare-grid">
+                <div class="healthcare-card" style="border-left: 5px solid #e74c3c;">
+                    <h4>High Infrastructure Costs</h4>
+                    <ul>
+                        <li>Cyclotron facilities cost $2-5 million</li>
+                        <li>Specialized imaging equipment</li>
+                        <li>Radiation shielding requirements</li>
+                        <li>Clean room facilities for production</li>
+                    </ul>
+                </div>
+
+                <div class="healthcare-card" style="border-left: 5px solid #f39c12;">
+                    <h4>Regulatory & Safety Requirements</h4>
+                    <ul>
+                        <li>Stringent FDA approval processes</li>
+                        <li>Radiation safety protocols</li>
+                        <li>Staff training and certification</li>
+                        <li>Waste disposal regulations</li>
+                    </ul>
+                </div>
+
+                <div class="healthcare-card" style="border-left: 5px solid #9b59b6;">
+                    <h4>Supply Chain Complexity</h4>
+                    <ul>
+                        <li>Short half-life isotope logistics</li>
+                        <li>Global supply dependencies</li>
+                        <li>Quality control requirements</li>
+                        <li>Just-in-time delivery needs</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Benefits Section -->
+    <section class="benefits-section">
+        <div class="container">
+            <h2 style="text-align: center; margin-bottom: 1rem; color: #2c3e50;">Benefits of Medical Isotopes</h2>
+            <p style="text-align: center; color: #666; max-width: 800px; margin: 0 auto;">Medical isotopes provide unparalleled precision in diagnosis and treatment, improving patient outcomes and quality of life.</p>
+            
+            <div class="benefits-grid">
+                <div class="benefit-item">
+                    <div class="icon">
+                        <i class="fas fa-search-plus"></i>
+                    </div>
+                    <h4>Precise Diagnosis</h4>
+                    <p>Enable early detection and accurate diagnosis of diseases through advanced imaging techniques.</p>
+                </div>
+
+                <div class="benefit-item">
+                    <div class="icon">
+                        <i class="fas fa-bullseye"></i>
+                    </div>
+                    <h4>Targeted Treatment</h4>
+                    <p>Deliver therapeutic radiation directly to diseased tissue while sparing healthy organs.</p>
+                </div>
+
+                <div class="benefit-item">
+                    <div class="icon">
+                        <i class="fas fa-user-shield"></i>
+                    </div>
+                    <h4>Minimally Invasive</h4>
+                    <p>Reduce need for surgical procedures through non-invasive diagnostic and therapeutic options.</p>
+                </div>
+
+                <div class="benefit-item">
+                    <div class="icon">
+                        <i class="fas fa-heartbeat"></i>
+                    </div>
+                    <h4>Improved Outcomes</h4>
+                    <p>Enhance patient survival rates and quality of life through personalized medicine approaches.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Recent News Section -->
+    <section class="healthcare-section" style="background: #f8f9fa;">
+        <div class="container">
+            <h2 style="text-align: center; margin-bottom: 1rem; color: #2c3e50;">Recent News in Medical Isotopes</h2>
+            <p style="text-align: center; color: #666; max-width: 800px; margin: 0 auto;">Stay updated with the latest developments in medical isotope research and clinical applications.</p>
+            
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem; margin-top: 3rem;">
+                <div class="news-card" style="background: rgba(255,255,255,0.9); backdrop-filter: blur(10px); padding: 2rem; border-radius: 15px; box-shadow: 0 10px 30px rgba(0,0,0,0.1); transition: all 0.3s ease;">
+                    <h4 style="color: #2c3e50; margin-bottom: 1rem;">FDA Approves New Radiopharmaceutical</h4>
+                    <p style="color: #666; line-height: 1.6; margin-bottom: 1rem;">Latest breakthrough in targeted cancer therapy receives regulatory approval for clinical use in oncology treatments.</p>
+                    <a href="https://www.fda.gov/drugs/news-events-human-drugs" target="_blank" style="color: #667eea; text-decoration: none; font-weight: 500;">Read more →</a>
+                </div>
+
+                <div class="news-card" style="background: rgba(255,255,255,0.9); backdrop-filter: blur(10px); padding: 2rem; border-radius: 15px; box-shadow: 0 10px 30px rgba(0,0,0,0.1); transition: all 0.3s ease;">
+                    <h4 style="color: #2c3e50; margin-bottom: 1rem;">Advances in PET/CT Imaging</h4>
+                    <p style="color: #666; line-height: 1.6; margin-bottom: 1rem;">New fluorine-18 tracers enhance early detection capabilities for cardiovascular and neurological conditions.</p>
+                    <a href="https://www.snmmi.org/NewsPublications/NewsDetail.aspx" target="_blank" style="color: #667eea; text-decoration: none; font-weight: 500;">Read more →</a>
+                </div>
+
+                <div class="news-card" style="background: rgba(255,255,255,0.9); backdrop-filter: blur(10px); padding: 2rem; border-radius: 15px; box-shadow: 0 10px 30px rgba(0,0,0,0.1); transition: all 0.3s ease;">
+                    <h4 style="color: #2c3e50; margin-bottom: 1rem;">Global Isotope Supply Chain Improvements</h4>
+                    <p style="color: #666; line-height: 1.6; margin-bottom: 1rem;">International efforts to strengthen medical isotope production and distribution networks show promising results.</p>
+                    <a href="https://www.iaea.org/newscenter/news" target="_blank" style="color: #667eea; text-decoration: none; font-weight: 500;">Read more →</a>
+                </div>
+
+                <div class="news-card" style="background: rgba(255,255,255,0.9); backdrop-filter: blur(10px); padding: 2rem; border-radius: 15px; box-shadow: 0 10px 30px rgba(0,0,0,0.1); transition: all 0.3s ease;">
+                    <h4 style="color: #2c3e50; margin-bottom: 1rem;">Breakthrough in Alzheimer's Imaging</h4>
+                    <p style="color: #666; line-height: 1.6; margin-bottom: 1rem;">Novel PET tracers enable earlier detection of amyloid plaques in Alzheimer's disease research.</p>
+                    <a href="https://www.nih.gov/news-events" target="_blank" style="color: #667eea; text-decoration: none; font-weight: 500;">Read more →</a>
+                </div>
+
+                <div class="news-card" style="background: rgba(255,255,255,0.9); backdrop-filter: blur(10px); padding: 2rem; border-radius: 15px; box-shadow: 0 10px 30px rgba(0,0,0,0.1); transition: all 0.3s ease;">
+                    <h4 style="color: #2c3e50; margin-bottom: 1rem;">Theranostic Applications Expand</h4>
+                    <p style="color: #666; line-height: 1.6; margin-bottom: 1rem;">Combined diagnostic and therapeutic isotopes show promise in personalized cancer treatment protocols.</p>
+                    <a href="https://www.nature.com/subjects/medical-imaging" target="_blank" style="color: #667eea; text-decoration: none; font-weight: 500;">Read more →</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- References Section -->
+    <section class="healthcare-section" style="background: white; border-top: 1px solid #e0e0e0;">
+        <div class="container">
+            <h2 style="text-align: center; margin-bottom: 2rem; color: #2c3e50;">References & Sources</h2>
+            <div style="max-width: 800px; margin: 0 auto; color: #666; line-height: 1.8;">
+                <ol>
+                    <li>U.S. Food and Drug Administration (FDA). "Drugs - News & Events." <a href="https://www.fda.gov/drugs/news-events-human-drugs" target="_blank" style="color: #667eea;">FDA Drug News</a></li>
+                    <li>Society of Nuclear Medicine and Molecular Imaging (SNMMI). "Latest News in Nuclear Medicine." <a href="https://www.snmmi.org/NewsPublications" target="_blank" style="color: #667eea;">SNMMI Publications</a></li>
+                    <li>International Atomic Energy Agency (IAEA). "Nuclear Medicine and Medical Imaging." <a href="https://www.iaea.org/topics/nuclear-medicine" target="_blank" style="color: #667eea;">IAEA Medical Applications</a></li>
+                    <li>National Institutes of Health (NIH). "Medical Research News." <a href="https://www.nih.gov/news-events" target="_blank" style="color: #667eea;">NIH News Center</a></li>
+                </ol>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3><i class="fas fa-atom"></i> IsotopeTech</h3>
+                    <p>Advancing healthcare through medical isotopes and nuclear medicine innovations.</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="index.html#applications">Applications</a></li>
+                        <li><a href="index.html#chatbot">AI Assistant</a></li>
+                        <li><a href="index.html#about">About</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Applications</h4>
+                    <ul>
+                        <li><a href="healthcare.html">Healthcare</a></li>
+                        <li><a href="agriculture.html">Agriculture</a></li>
+                        <li><a href="production.html">Production</a></li>
+                        <li><a href="art-science.html">Art & Science</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Resources</h4>
+                    <ul>
+                        <li><a href="#">Safety Guidelines</a></li>
+                        <li><a href="#">Regulations</a></li>
+                        <li><a href="#">Documentation</a></li>
+                        <li><a href="#">Support</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 IsotopeTech. All rights reserved. | Transforming healthcare through nuclear medicine.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
+                       

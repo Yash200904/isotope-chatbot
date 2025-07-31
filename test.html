@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Chatbot Test</title>
+</head>
+<body>
+    <h1>Chatbot Test</h1>
+    <input type="text" id="testInput" placeholder="Type a message">
+    <button onclick="testChat()">Send</button>
+    <div id="result"></div>
+
+    <script>
+        async function testChat() {
+            const input = document.getElementById('testInput');
+            const result = document.getElementById('result');
+            const message = input.value;
+            
+            try {
+                console.log('Sending message:', message);
+                const response = await fetch('http://localhost:3001/chat', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ message })
+                });
+                
+                console.log('Response status:', response.status);
+                const data = await response.json();
+                console.log('Response data:', data);
+                
+                if (data.choices && data.choices[0] && data.choices[0].message) {
+                    result.innerHTML = '<h3>Response:</h3><p>' + data.choices[0].message.content + '</p>';
+                } else {
+                    result.innerHTML = '<h3>Error:</h3><p>No valid response</p>';
+                }
+            } catch (error) {
+                console.error('Error:', error);
+                result.innerHTML = '<h3>Error:</h3><p>' + error.message + '</p>';
+            }
+        }
+    </script>
+</body>
+</html>
